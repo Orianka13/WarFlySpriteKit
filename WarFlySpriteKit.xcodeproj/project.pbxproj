@@ -15,6 +15,7 @@
 		59D9B0A4289A712400BE8AE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9B0A2289A712400BE8AE5 /* LaunchScreen.storyboard */; };
 		59D9B0AB289AA0E800BE8AE5 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AA289AA0E800BE8AE5 /* Background.swift */; };
 		59D9B0AD289AA55D00BE8AE5 /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AC289AA55D00BE8AE5 /* Island.swift */; };
+		59D9B0B0289AADCC00BE8AE5 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		59D9B0A3289A712400BE8AE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59D9B0AA289AA0E800BE8AE5 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		59D9B0AC289AA55D00BE8AE5 /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
+		59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				59D9B0AC289AA55D00BE8AE5 /* Island.swift */,
+				59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */,
 				59D9B0AA289AA0E800BE8AE5 /* Background.swift */,
 			);
 			path = Sprites;
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59D9B09A289A712200BE8AE5 /* GameScene.swift in Sources */,
+				59D9B0B0289AADCC00BE8AE5 /* Cloud.swift in Sources */,
 				59D9B09C289A712200BE8AE5 /* GameViewController.swift in Sources */,
 				59D9B094289A712200BE8AE5 /* AppDelegate.swift in Sources */,
 				59D9B0AD289AA55D00BE8AE5 /* Island.swift in Sources */,

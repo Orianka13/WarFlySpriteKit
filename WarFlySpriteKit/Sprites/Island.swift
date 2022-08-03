@@ -9,10 +9,10 @@ import UIKit
 import SpriteKit
 import GameplayKit // импортируем для генерации рандомных чисел
 
-class Island: SKSpriteNode {
+final class Island: SKSpriteNode, GameBackgroundSpritable {
     
     // создаем остров
-    static func populateIsland(at point: CGPoint) -> Island {
+    static func populateSprite(at point: CGPoint) -> Island {
         let islandName = configureIslandName()
         let island = Island(imageNamed: islandName)
         island.setScale(randomScaleFactor)

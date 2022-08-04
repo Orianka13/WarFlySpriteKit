@@ -19,11 +19,12 @@ final class Island: SKSpriteNode, GameBackgroundSpritable {
         island.position = point
         island.zPosition = 1
         island.run(rotateForRandomAngle())
+        island.run(move(from: point))
         return island
     }
     
     //генерируем рандомное расположение
-    static var randomScaleFactor: CGFloat {
+    private static var randomScaleFactor: CGFloat {
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 10)
         let randomNumber = CGFloat(distribution.nextInt()) / 10
         
@@ -31,17 +32,28 @@ final class Island: SKSpriteNode, GameBackgroundSpritable {
     }
     
     //генерируем рандомное имя
-    static func configureIslandName() -> String {
+    private static func configureIslandName() -> String {
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 4)
         let randomName = "is" + String(distribution.nextInt())
         return randomName
     }
     
     //генерируем рандомный угол поворота
-    static func rotateForRandomAngle() -> SKAction {
+    private static func rotateForRandomAngle() -> SKAction {
         let distribution = GKRandomDistribution(lowestValue: 0, highestValue: 360)
         let randomNumber = CGFloat(distribution.nextInt())
         
         return SKAction.rotate(toAngle: randomNumber * CGFloat(Double.pi / 180), duration: 0) //вычисляем радианы
+    }
+    
+    //добавим движение островов по вертикали вниз
+    private static func move(from point: CGPoint) -> SKAction {
+    
+        let movePoint = CGPoint(x: point.x, y: -200) //при движении строго вниз координата х не меняется
+        let moveDistance = point.y + 200
+        let movementSpeed: CGFloat = 10.0
+        let duration = moveDistance / movementSpeed
+        
+        return SKAction.move(to: movePoint, duration: TimeInterval(duration))
     }
 }

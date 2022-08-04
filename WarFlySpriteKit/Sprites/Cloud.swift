@@ -22,6 +22,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         cloud.setScale(randomScaleFactor)
         cloud.position = point
         cloud.zPosition = 10
+        cloud.run(move(from: point))
         return cloud
     }
     
@@ -38,5 +39,16 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 3)
         let randomName = "cl" + String(distribution.nextInt())
         return randomName
+    }
+    
+    //добавим движение облаков по вертикали вниз
+    private static func move(from point: CGPoint) -> SKAction {
+    
+        let movePoint = CGPoint(x: point.x, y: -200) //при движении строго вниз координата х не меняется
+        let moveDistance = point.y + 200
+        let movementSpeed: CGFloat = 15.0
+        let duration = moveDistance / movementSpeed
+        
+        return SKAction.move(to: movePoint, duration: TimeInterval(duration))
     }
 }

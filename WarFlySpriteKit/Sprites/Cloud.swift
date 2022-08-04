@@ -21,7 +21,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         let cloud = Cloud(imageNamed: cloudName)
         cloud.setScale(randomScaleFactor)
         cloud.position = point
-        cloud.zPosition = 10
+        cloud.zPosition = randomZPosition
         cloud.run(move(from: point))
         return cloud
     }
@@ -39,6 +39,14 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 3)
         let randomName = "cl" + String(distribution.nextInt())
         return randomName
+    }
+    
+    //генерируем рандомную zPosition для облаков, чтобы некоторые были над и некоторые под самолетом
+    private static var randomZPosition: CGFloat  {
+        let distribution = GKRandomDistribution(lowestValue: 18, highestValue: 22)
+        let randomNumber = CGFloat(distribution.nextInt())
+        
+        return randomNumber
     }
     
     //добавим движение облаков по вертикали вниз

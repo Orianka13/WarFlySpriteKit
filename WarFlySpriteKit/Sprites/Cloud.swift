@@ -10,19 +10,32 @@ import SpriteKit
 import GameplayKit
 
 protocol GameBackgroundSpritable {
-    static func populateSprite(at point: CGPoint) -> Self // Self - означает что должен быть возвращен либо тип протокола, либо тип класса, который подписан под этот протокол - у класса поставить final
-    
+    static func populate() -> Self // Self - означает что должен быть возвращен либо тип протокола, либо тип класса, который подписан под этот протокол - у класса поставить final
+    static func randomPoint() -> CGPoint
+}
+
+
+extension GameBackgroundSpritable {
+    //сгенерируем точку от 100 до 200 выше экрана (для генерации островов и облаков ЗА пределами экрана)
+    static func randomPoint() -> CGPoint {
+        let screen = UIScreen.main.bounds
+        let distribution = GKRandomDistribution(lowestValue: Int(screen.size.height) + 100, highestValue: Int(screen.size.height) + 200)
+        let y = CGFloat(distribution.nextInt()) //nextInt() - используется для генерации значений
+        let x = CGFloat(GKRandomSource.sharedRandom().nextInt(upperBound: Int(screen.size.width)))
+        
+        return CGPoint(x: x, y: y)
+    }
 }
 
 final class Cloud: SKSpriteNode, GameBackgroundSpritable {
     // создаем облако
-    static func populateSprite(at point: CGPoint) -> Cloud {
+    static func populate() -> Cloud {
         let cloudName = configureCloudName()
         let cloud = Cloud(imageNamed: cloudName)
         cloud.setScale(randomScaleFactor)
-        cloud.position = point
+        cloud.position = randomPoint()
         cloud.zPosition = randomZPosition
-        cloud.run(move(from: point))
+        cloud.run(move(from: cloud.position))
         return cloud
     }
     
@@ -54,7 +67,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
     
         let movePoint = CGPoint(x: point.x, y: -200) //при движении строго вниз координата х не меняется
         let moveDistance = point.y + 200
-        let movementSpeed: CGFloat = 15.0
+        let movementSpeed: CGFloat = 150.0
         let duration = moveDistance / movementSpeed
         
         return SKAction.move(to: movePoint, duration: TimeInterval(duration))

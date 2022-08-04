@@ -12,14 +12,25 @@ import GameplayKit // импортируем для генерации ранд�
 final class Island: SKSpriteNode, GameBackgroundSpritable {
     
     // создаем остров
-    static func populateSprite(at point: CGPoint) -> Island {
+    static func populate() -> Island {
+        let islandName = configureIslandName()
+        let island = Island(imageNamed: islandName)
+        island.setScale(randomScaleFactor)
+        island.position = randomPoint()
+        island.zPosition = 1
+        island.run(rotateForRandomAngle())
+        island.run(move(from: island.position))
+        return island
+    }
+    
+    static func populate(at point: CGPoint) -> Island {
         let islandName = configureIslandName()
         let island = Island(imageNamed: islandName)
         island.setScale(randomScaleFactor)
         island.position = point
         island.zPosition = 1
         island.run(rotateForRandomAngle())
-        island.run(move(from: point))
+        island.run(move(from: island.position))
         return island
     }
     
@@ -51,7 +62,7 @@ final class Island: SKSpriteNode, GameBackgroundSpritable {
     
         let movePoint = CGPoint(x: point.x, y: -200) //при движении строго вниз координата х не меняется
         let moveDistance = point.y + 200
-        let movementSpeed: CGFloat = 10.0
+        let movementSpeed: CGFloat = 100.0
         let duration = moveDistance / movementSpeed
         
         return SKAction.move(to: movePoint, duration: TimeInterval(duration))

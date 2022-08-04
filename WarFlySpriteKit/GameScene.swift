@@ -7,8 +7,12 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene {
+    
+    let motionManager = CMMotionManager()
+    var xAcceleration: CGFloat = 0
     
     private var player: SKSpriteNode?
     
@@ -39,6 +43,31 @@ class GameScene: SKScene {
         self.player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         
         self.addChild(player ?? SKSpriteNode())
+        
+        self.motionManager.accelerometerUpdateInterval = 0.2 //замеряет ускорения каждые 0.2 сек
+        self.motionManager.startAccelerometerUpdates(to: OperationQueue.current ?? OperationQueue()) { data, error in
+            if let data = data {
+                let acceleration = data.acceleration
+                self.xAcceleration = CGFloat(acceleration.x) * 0.7 + self.xAcceleration * 0.3
+            }
+        }
+        
+    }
+    
+    override func didSimulatePhysics() {
+        super.didSimulatePhysics()
+        
+        guard let player = player else {
+            return
+        }
+
+        player.position.x += xAcceleration * 50 //перемещаем самолет
+        
+        if player.position.x < -70 {
+            player.position.x = self.size.width + 70
+        } else if player.position.x > self.size.width + 70 {
+            player.position.x = -70
+        }
     }
 }
 

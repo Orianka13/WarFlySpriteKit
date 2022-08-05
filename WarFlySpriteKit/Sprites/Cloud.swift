@@ -12,22 +12,14 @@ import GameplayKit
 
 final class Cloud: SKSpriteNode, GameBackgroundSpritable {
     // создаем облако
-    static func populate() -> Cloud {
+    static func populate(at point: CGPoint?) -> Cloud {
         let cloudName = configureCloudName()
         let cloud = Cloud(imageNamed: cloudName)
         cloud.setScale(randomScaleFactor)
-        cloud.position = randomPoint()
+        cloud.position = point ?? randomPoint()
         cloud.zPosition = randomZPosition
-        cloud.run(move(from: cloud.position))
-        return cloud
-    }
-    
-    static func populate(at point: CGPoint) -> Cloud {
-        let cloudName = configureCloudName()
-        let cloud = Cloud(imageNamed: cloudName)
-        cloud.setScale(randomScaleFactor)
-        cloud.position = point
-        cloud.zPosition = randomZPosition
+        cloud.name = "backgroundSprite"
+        //cloud.anchorPoint = CGPoint(x: 0.5, y: 1.0) //перемещаем границу вверх чтобы удаление объектов происходило после пересечения верхней границы объекта
         cloud.run(move(from: cloud.position))
         return cloud
     }

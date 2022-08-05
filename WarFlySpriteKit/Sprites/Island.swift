@@ -12,23 +12,14 @@ import GameplayKit // импортируем для генерации ранд�
 final class Island: SKSpriteNode, GameBackgroundSpritable {
     
     // создаем остров
-    static func populate() -> Island {
+    static func populate(at point: CGPoint?) -> Island {
         let islandName = configureIslandName()
         let island = Island(imageNamed: islandName)
         island.setScale(randomScaleFactor)
-        island.position = randomPoint()
+        island.position = point ?? randomPoint()
         island.zPosition = 1
-        island.run(rotateForRandomAngle())
-        island.run(move(from: island.position))
-        return island
-    }
-    
-    static func populate(at point: CGPoint) -> Island {
-        let islandName = configureIslandName()
-        let island = Island(imageNamed: islandName)
-        island.setScale(randomScaleFactor)
-        island.position = point
-        island.zPosition = 1
+        island.name = "backgroundSprite"
+       // island.anchorPoint = CGPoint(x: 0.5, y: 1.0) //перемещаем границу вверх чтобы удаление объектов происходило после пересечения верхней границы объекта
         island.run(rotateForRandomAngle())
         island.run(move(from: island.position))
         return island

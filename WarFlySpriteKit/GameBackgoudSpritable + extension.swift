@@ -10,7 +10,7 @@ import GameplayKit
 
 
 protocol GameBackgroundSpritable {
-    static func populate() -> Self // Self - означает что должен быть возвращен либо тип протокола, либо тип класса, который подписан под этот протокол - у класса поставить final
+    static func populate(at point: CGPoint?) -> Self // Self - означает что должен быть возвращен либо тип протокола, либо тип класса, который подписан под этот протокол - у класса поставить final
     static func randomPoint() -> CGPoint
 }
 

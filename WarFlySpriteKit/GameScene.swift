@@ -20,6 +20,32 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         self.configureStartScene()
+        self.spawnClouds()
+        self.spawnIsland()
+    }
+    
+    private func spawnClouds() {
+        //создаем 2 action: 1 - интервал когда ничего происходить не будет, 2 - генерация нашего объекта
+        let spawnCloudWait = SKAction.wait(forDuration: 1)
+        let spawnCloudAction = SKAction.run {
+            let cloud = Cloud.populate()
+            self.addChild(cloud)
+        }
+        let spawnCloydSequence = SKAction.sequence([spawnCloudWait, spawnCloudAction])
+        let spawnCloudForever = SKAction.repeatForever(spawnCloydSequence) //бесконечно генерируем облака каждую секунду
+        run(spawnCloudForever)
+    }
+    
+    private func spawnIsland() {
+        //создаем 2 action: 1 - интервал когда ничего происходить не будет, 2 - генерация нашего объекта
+        let spawnIslandWait = SKAction.wait(forDuration: 2)
+        let spawnIslandAction = SKAction.run {
+            let island = Island.populate()
+            self.addChild(island)
+        }
+        let spawnIslandSequence = SKAction.sequence([spawnIslandWait, spawnIslandAction])
+        let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence) //бесконечно генерируем острова каждые 2 секунды
+        run(spawnIslandForever)
     }
     
     private func configureStartScene() {

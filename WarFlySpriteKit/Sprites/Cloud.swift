@@ -22,6 +22,16 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         return cloud
     }
     
+    static func populate(at point: CGPoint) -> Cloud {
+        let cloudName = configureCloudName()
+        let cloud = Cloud(imageNamed: cloudName)
+        cloud.setScale(randomScaleFactor)
+        cloud.position = point
+        cloud.zPosition = randomZPosition
+        cloud.run(move(from: cloud.position))
+        return cloud
+    }
+    
     //генерируем рандомное расположение
     private static var randomScaleFactor: CGFloat {
         let distribution = GKRandomDistribution(lowestValue: 20, highestValue: 30)

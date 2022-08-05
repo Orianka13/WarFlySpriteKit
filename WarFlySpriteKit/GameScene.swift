@@ -35,6 +35,13 @@ class GameScene: SKScene {
         let island2 = Island.populate(at: CGPoint(x: self.size.width - 100, y: self.size.height - 200))
         self.addChild(island2)
         
+        let cloud1 = Cloud.populate(at: CGPoint(x: 300, y: 200))
+        self.addChild(cloud1)
+        
+        let cloud2 = Cloud.populate(at: CGPoint(x: self.size.width - 200, y: self.size.height - 50))
+        self.addChild(cloud2)
+        
+        
         self.player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         
         self.addChild(player ?? SKSpriteNode())

@@ -121,43 +121,30 @@ class PlayerPlane: SKSpriteNode {
         //подгрузим атлас
         SKTextureAtlas.preloadTextureAtlases([SKTextureAtlas(named: "PlayerPlane")]) {
             self.leftTextureArrayAnimation = {
-                var array = [SKTexture]()
-                for i in stride(from: 13, through: 1, by: -1) {
-                    let number = String(format: "%02d", i)
-                    let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
-                    array.append(texture)
-                }
-                SKTexture.preload(array) {
-                    print("preload is done")
-                }
-                return array
+                self.fillTextureArray(from: 13, through: 1, by: -1)
             }()
             
             self.rightTextureArrayAnimation = {
-                var array = [SKTexture]()
-                for i in stride(from: 13, through: 26, by: 1) {
-                    let number = String(format: "%02d", i)
-                    let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
-                    array.append(texture)
-                }
-                SKTexture.preload(array) {
-                    print("preload is done")
-                }
-                return array
+                self.fillTextureArray(from: 13, through: 26, by: 1)
             }()
             
             self.forwardTextureArrayAnimation = {
-                var array = [SKTexture]()
-                let texture = SKTexture(imageNamed: "airplane_3ver2_13")
-                
-                array.append(texture)
-                
-                SKTexture.preload(array) {
-                    print("preload is done")
-                }
-                return array
+                self.fillTextureArray(from: 13, through: 13, by: 1)
             }()
         }
+    }
+    
+    private func fillTextureArray(from: Int, through: Int, by: Int) -> [SKTexture] {
+        var array = [SKTexture]()
+        for i in stride(from: from, through: through , by: by) {
+            let number = String(format: "%02d", i)
+            let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
+            array.append(texture)
+        }
+        SKTexture.preload(array) {
+            print("preload is done")
+        }
+        return array
     }
     
 }

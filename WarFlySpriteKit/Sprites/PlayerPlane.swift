@@ -26,6 +26,8 @@ class PlayerPlane: SKSpriteNode {
     private var moveDirection: TurnDirection = .none
     private var stillTurning = false
     
+    private let strides = [(13, 1, -1), (13, 26, 1), (13, 13, 1)]
+    
     let screenSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     
 
@@ -53,7 +55,7 @@ class PlayerPlane: SKSpriteNode {
     
     func performFly() {
         
-        self.planeAnimationFillArray()
+        self.preloadTextureArrays()
         
         self.motionManager.accelerometerUpdateInterval = 0.2 //замеряет ускорения каждые 0.2 сек
         self.motionManager.startAccelerometerUpdates(to: OperationQueue.current ?? OperationQueue()) { [weak self] data, error in
@@ -117,34 +119,33 @@ class PlayerPlane: SKSpriteNode {
     }
     
     //метод в котором перебираем все изображения и помещаем в различные массивы
-    private func planeAnimationFillArray() {
-        //подгрузим атлас
-        SKTextureAtlas.preloadTextureAtlases([SKTextureAtlas(named: "PlayerPlane")]) {
-            self.leftTextureArrayAnimation = {
-                self.fillTextureArray(from: 13, through: 1, by: -1)
-            }()
-            
-            self.rightTextureArrayAnimation = {
-                self.fillTextureArray(from: 13, through: 26, by: 1)
-            }()
-            
-            self.forwardTextureArrayAnimation = {
-                self.fillTextureArray(from: 13, through: 13, by: 1)
-            }()
+    private func preloadTextureArrays() {
+        for i in 0...2 {
+            self.fillTextureArray(_strides: self.strides[i]) { [weak self] array in
+                switch i {
+                case 0:
+                    self?.leftTextureArrayAnimation = array
+                case 1:
+                    self?.rightTextureArrayAnimation = array
+                case 2:
+                    self?.forwardTextureArrayAnimation = array
+                default:
+                    break
+                }
+            }
         }
     }
     
-    private func fillTextureArray(from: Int, through: Int, by: Int) -> [SKTexture] {
+    private func fillTextureArray(_strides: (Int, Int, Int), callback: @escaping (_ array: [SKTexture]) -> Void) {
         var array = [SKTexture]()
-        for i in stride(from: from, through: through , by: by) {
+        for i in stride(from: _strides.0, through: _strides.1 , by: _strides.2) {
             let number = String(format: "%02d", i)
             let texture = SKTexture(imageNamed: "airplane_3ver2_\(number)")
             array.append(texture)
         }
         SKTexture.preload(array) {
-            print("preload is done")
+            callback(array)
         }
-        return array
     }
     
 }

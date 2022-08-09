@@ -11,6 +11,7 @@
 		59077D5B28A127B000420CF6 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59077D5A28A127AF00420CF6 /* GreenPowerUp.atlas */; };
 		59077D5D28A1282900420CF6 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59077D5C28A1282900420CF6 /* PowerUp.swift */; };
 		59077D7F28A269B400420CF6 /* Enemy_1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59077D7E28A269B400420CF6 /* Enemy_1.atlas */; };
+		59077D8128A26A5600420CF6 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59077D8028A26A5600420CF6 /* Enemy.swift */; };
 		59D9B094289A712200BE8AE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B093289A712200BE8AE5 /* AppDelegate.swift */; };
 		59D9B09A289A712200BE8AE5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B099289A712200BE8AE5 /* GameScene.swift */; };
 		59D9B09C289A712200BE8AE5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B09B289A712200BE8AE5 /* GameViewController.swift */; };
@@ -29,6 +30,7 @@
 		59077D5A28A127AF00420CF6 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = GreenPowerUp.atlas; path = ../../../../Downloads/GreenPowerUp.atlas; sourceTree = "<group>"; };
 		59077D5C28A1282900420CF6 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		59077D7E28A269B400420CF6 /* Enemy_1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Enemy_1.atlas; path = ../../../../Downloads/Enemy_1.atlas; sourceTree = "<group>"; };
+		59077D8028A26A5600420CF6 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		59D9B090289A712200BE8AE5 /* WarFlySpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFlySpriteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D9B093289A712200BE8AE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59D9B099289A712200BE8AE5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				59D9B0AA289AA0E800BE8AE5 /* Background.swift */,
 				59D9B0B1289BC56C00BE8AE5 /* PlayerPlane.swift */,
 				59077D5C28A1282900420CF6 /* PowerUp.swift */,
+				59077D8028A26A5600420CF6 /* Enemy.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				59D9B0B0289AADCC00BE8AE5 /* Cloud.swift in Sources */,
 				59D9B09C289A712200BE8AE5 /* GameViewController.swift in Sources */,
 				59D9B094289A712200BE8AE5 /* AppDelegate.swift in Sources */,
+				59077D8128A26A5600420CF6 /* Enemy.swift in Sources */,
 				59D9B0AD289AA55D00BE8AE5 /* Island.swift in Sources */,
 				59077D5D28A1282900420CF6 /* PowerUp.swift in Sources */,
 				59D9B0AB289AA0E800BE8AE5 /* Background.swift in Sources */,

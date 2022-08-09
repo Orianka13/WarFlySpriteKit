@@ -18,7 +18,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
         cloud.setScale(randomScaleFactor)
         cloud.position = point ?? randomPoint()
         cloud.zPosition = randomZPosition
-        cloud.name = "backgroundSprite"
+        cloud.name = "sprite"
         //cloud.anchorPoint = CGPoint(x: 0.5, y: 1.0) //перемещаем границу вверх чтобы удаление объектов происходило после пересечения верхней границы объекта
         cloud.run(move(from: cloud.position))
         return cloud
@@ -26,7 +26,7 @@ final class Cloud: SKSpriteNode, GameBackgroundSpritable {
     
     //генерируем рандомное расположение
     private static var randomScaleFactor: CGFloat {
-        let distribution = GKRandomDistribution(lowestValue: 20, highestValue: 30)
+        let distribution = GKRandomDistribution(lowestValue: 10, highestValue: 20)
         let randomNumber = CGFloat(distribution.nextInt()) / 10
         
         return randomNumber

@@ -8,11 +8,17 @@
 import SpriteKit
 
 class Enemy: SKSpriteNode {
+    
+    private enum EnemyDirection: Int {
+        case left = 0
+        case right
+    }
 
     static var textureAtlas: SKTextureAtlas?
+    private var enemyTexture: SKTexture?
     
-    init() {
-        let texture = Enemy.textureAtlas?.textureNamed("airplane_4ver2_13")
+    init(enemyTexture: SKTexture) {
+        let texture = enemyTexture
         super.init(texture: texture, color: .clear, size: CGSize(width: 221, height: 204))
         self.xScale = 0.5
         self.yScale = -0.5 //чтобы самолет смотрел в противоположную сторону(вниз)
@@ -29,12 +35,17 @@ class Enemy: SKSpriteNode {
     func flySpiral() {
         let screenSize = UIScreen.main.bounds
         let timeHorizontal: Double = 3
-        let timeVertical: Double = 10
+        let timeVertical: Double = 5
+        
         let moveLeft = SKAction.moveTo(x: 55, duration: timeHorizontal) // 55 - половина от ширины самолета 221 * 0.5
         moveLeft.timingMode = .easeInEaseOut
         let moveRight = SKAction.moveTo(x: screenSize.width - 55, duration: timeHorizontal)
         moveRight.timingMode = .easeInEaseOut
-        let asideMovementSequense = SKAction.sequence([moveLeft, moveRight])
+        
+        let randomNumber = Int(arc4random_uniform(2)) //рандомное число до 2, т.е 0 и 1
+        
+        let asideMovementSequense = randomNumber == EnemyDirection.left.rawValue ? SKAction.sequence([moveLeft, moveRight]) : SKAction.sequence([moveRight, moveLeft])
+     
         let sequenseForeverMovement = SKAction.repeatForever(asideMovementSequense)
         
         let forwardMovement = SKAction.moveTo(y: -105, duration: timeVertical)

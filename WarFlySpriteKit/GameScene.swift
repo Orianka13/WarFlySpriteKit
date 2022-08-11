@@ -26,7 +26,7 @@ class GameScene: SKScene {
         }
         
         self.spawnPowerUp()
-        self.spawnEnemy(count: 5)
+        self.spawnEnemies()
     }
     
     private func spawnPowerUp() {
@@ -36,20 +36,41 @@ class GameScene: SKScene {
         self.addChild(powerUp)
     }
     
-    private func spawnEnemy(count: Int) {
-        let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
-        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
-            Enemy.textureAtlas = enemyTextureAtlas
+    private func spawnEnemies() {
+        let waitAction = SKAction.wait(forDuration: 3.0)
+        let spawnSpiralAction = SKAction.run { [weak self] in
+            self?.spawnSpiralOfEnemies()
+        }
+        let sequense = SKAction.sequence([spawnSpiralAction, waitAction])
+        self.run(SKAction.repeatForever(sequense))
+    }
+    
+    private func spawnSpiralOfEnemies() {
+        let enemyTextureAtlas1 = SKTextureAtlas(named: "Enemy_1")
+        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+        
+        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [weak self] in
+            
+            let randomNumber = Int(arc4random_uniform(2))
+            let arrayOfAtlases = [enemyTextureAtlas1, enemyTextureAtlas2]
+            let textureAtlas = arrayOfAtlases[randomNumber]
+            
             let waitAction = SKAction.wait(forDuration: 1.0)
-            let spawnEnemy = SKAction.run {
-                let enemy = Enemy()
-                enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height + 110)
-                self.addChild(enemy)
+            let spawnEnemy = SKAction.run { [ weak self] in
+                
+                let textureNames = textureAtlas.textureNames.sorted()
+                let textureName = textureNames[12] //вернули массив имен в атласе чтобы взять 12-ый элемент
+                
+                let enemy = Enemy(enemyTexture: textureAtlas.textureNamed(textureName))
+                enemy.position = CGPoint(x: (self?.size.width ?? 0) / 2, y: (self?.size.height ?? 0) + 110)
+                self?.addChild(enemy)
                 enemy.flySpiral()
             }
             let spawnAction = SKAction.sequence([spawnEnemy, waitAction])
-            let repeatAction = SKAction.repeat(spawnAction, count: count)
-            self.run(repeatAction)
+            
+            let randomCountOfEnemies = Int(arc4random_uniform(5))
+            let repeatAction = SKAction.repeat(spawnAction, count: randomCountOfEnemies)
+            self?.run(repeatAction)
         }
         
     }

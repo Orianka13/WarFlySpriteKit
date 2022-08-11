@@ -13,6 +13,7 @@
 		59077D8328A4F86800420CF6 /* Enemy_2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59077D8228A4F86600420CF6 /* Enemy_2.atlas */; };
 		59077D8528A504A200420CF6 /* Enemy_1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59077D8428A504A200420CF6 /* Enemy_1.atlas */; };
 		59077D8728A504DA00420CF6 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59077D8628A504D900420CF6 /* GreenPowerUp.atlas */; };
+		59077D8928A5051900420CF6 /* PlayerPlane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59077D8828A5051900420CF6 /* PlayerPlane.atlas */; };
 		59D9B094289A712200BE8AE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B093289A712200BE8AE5 /* AppDelegate.swift */; };
 		59D9B09A289A712200BE8AE5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B099289A712200BE8AE5 /* GameScene.swift */; };
 		59D9B09C289A712200BE8AE5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B09B289A712200BE8AE5 /* GameViewController.swift */; };
@@ -23,7 +24,6 @@
 		59D9B0AD289AA55D00BE8AE5 /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AC289AA55D00BE8AE5 /* Island.swift */; };
 		59D9B0B0289AADCC00BE8AE5 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */; };
 		59D9B0B2289BC56C00BE8AE5 /* PlayerPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0B1289BC56C00BE8AE5 /* PlayerPlane.swift */; };
-		59D9B0B4289BC6B600BE8AE5 /* PlayerPlane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 59D9B0B3289BC6B600BE8AE5 /* PlayerPlane.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +33,7 @@
 		59077D8228A4F86600420CF6 /* Enemy_2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_2.atlas; sourceTree = "<group>"; };
 		59077D8428A504A200420CF6 /* Enemy_1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Enemy_1.atlas; sourceTree = "<group>"; };
 		59077D8628A504D900420CF6 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GreenPowerUp.atlas; sourceTree = "<group>"; };
+		59077D8828A5051900420CF6 /* PlayerPlane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PlayerPlane.atlas; sourceTree = "<group>"; };
 		59D9B090289A712200BE8AE5 /* WarFlySpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFlySpriteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D9B093289A712200BE8AE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59D9B099289A712200BE8AE5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		59D9B0AC289AA55D00BE8AE5 /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
 		59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		59D9B0B1289BC56C00BE8AE5 /* PlayerPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPlane.swift; sourceTree = "<group>"; };
-		59D9B0B3289BC6B600BE8AE5 /* PlayerPlane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = PlayerPlane.atlas; path = ../../../../Downloads/PlayerPlane.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +84,10 @@
 				59D9B09B289A712200BE8AE5 /* GameViewController.swift */,
 				59D9B09D289A712200BE8AE5 /* Main.storyboard */,
 				59D9B0A0289A712400BE8AE5 /* Assets.xcassets */,
+				59077D8828A5051900420CF6 /* PlayerPlane.atlas */,
 				59077D8628A504D900420CF6 /* GreenPowerUp.atlas */,
 				59077D8428A504A200420CF6 /* Enemy_1.atlas */,
 				59077D8228A4F86600420CF6 /* Enemy_2.atlas */,
-				59D9B0B3289BC6B600BE8AE5 /* PlayerPlane.atlas */,
 				59D9B0A2289A712400BE8AE5 /* LaunchScreen.storyboard */,
 			);
 			path = WarFlySpriteKit;
@@ -167,8 +167,8 @@
 				59077D8328A4F86800420CF6 /* Enemy_2.atlas in Resources */,
 				59D9B09F289A712200BE8AE5 /* Main.storyboard in Resources */,
 				59077D8528A504A200420CF6 /* Enemy_1.atlas in Resources */,
-				59D9B0B4289BC6B600BE8AE5 /* PlayerPlane.atlas in Resources */,
 				59D9B0A1289A712400BE8AE5 /* Assets.xcassets in Resources */,
+				59077D8928A5051900420CF6 /* PlayerPlane.atlas in Resources */,
 				59D9B0A4289A712400BE8AE5 /* LaunchScreen.storyboard in Resources */,
 				59077D8728A504DA00420CF6 /* GreenPowerUp.atlas in Resources */,
 			);

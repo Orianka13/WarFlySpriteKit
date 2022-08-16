@@ -135,25 +135,37 @@ class GameScene: SKScene {
         self.player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         
         self.addChild(player ?? SKSpriteNode())
-        
-        
     }
     
     override func didSimulatePhysics() {
         guard let player = player else {
             return
         }
-        
         player.checkPosition()
         
         enumerateChildNodes(withName: "sprite") { node, stop in
             if node.position.y <= -100 { //если нод внизу за пределами экрана
                 node.removeFromParent() //удаляем ее с экрана
-                if node.isKind(of: PowerUp.self) {
-                    print("PowerUp is removed from scene")
-                }
             }
         }
+        
+        enumerateChildNodes(withName: "shotSprite") { node, stop in
+            if node.position.y >= self.size.height + 100 {
+                node.removeFromParent()
+            }
+        }
+    }
+    
+    private func playerFire() {
+        let shot = YellowShot()
+        shot.position = self.player?.position ?? CGPoint()
+        shot.startMovement()
+        self.addChild(shot)
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.playerFire()
     }
 }
 

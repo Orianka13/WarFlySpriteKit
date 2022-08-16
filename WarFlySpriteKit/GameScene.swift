@@ -59,8 +59,8 @@ class GameScene: SKScene {
     }
     
     private func spawnSpiralOfEnemies() {
-        let enemyTextureAtlas1 = SKTextureAtlas(named: "Enemy_1")
-        let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+        let enemyTextureAtlas1 = Assets.shared.enemy_1Atlas
+        let enemyTextureAtlas2 = Assets.shared.enemy_2Atlas
         
         SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [weak self] in
             

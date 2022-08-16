@@ -23,7 +23,7 @@ class PowerUp: SKSpriteNode {
         self.textureNameBeginsWith = String(textureName.dropLast(6)) // 01.png
         super.init(texture: texture, color: .clear, size: self.initialSize)
         self.setScale(0.7)
-        self.name = "powerUp" //присвоили имя нашем спрайту
+        self.name = "sprite" //присвоили имя нашем спрайту
         self.zPosition = 20
     }
     
@@ -31,8 +31,15 @@ class PowerUp: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func startMovement() {
+        self.performRotation()
+        
+        let moveForvard = SKAction.moveTo(y: -100, duration: 5)
+        self.run(moveForvard)
+    }
+    
     //создадим анимацию
-    func performRotation() {
+    private func performRotation() {
         for i in 1...15 {
             let number = String(format: "%02d", i)
             let texture = SKTexture(imageNamed: self.textureNameBeginsWith + number.description)

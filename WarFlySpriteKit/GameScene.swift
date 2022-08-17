@@ -16,6 +16,10 @@ class GameScene: SKScene {
     let screen = UIScreen.main.bounds //определили размер экрана
     
     override func didMove(to view: SKView) {
+        
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector.zero
+        
         self.configureStartScene()
         self.spawnClouds()
         self.spawnIsland()
@@ -169,3 +173,12 @@ class GameScene: SKScene {
     }
 }
 
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        print("contact detected")
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+    }
+}

@@ -43,9 +43,9 @@ class PlayerPlane: SKSpriteNode {
                                                 alphaThreshold: 0.5,
                                                 size: playerPlane.size) //создали физическое тело объекта
         playerPlane.physicsBody?.isDynamic = false //если в нас кто то влетит-мы не отскочим, статичны
-        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player //присвоили битовую маску
-        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp //битовые маски с которыми игрок сталкивается
-        playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp
+        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue //присвоили битовую маску
+        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue //битовые маски с которыми игрок сталкивается
+        playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
         
         return playerPlane
     }

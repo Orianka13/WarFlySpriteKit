@@ -12,6 +12,12 @@ import GameplayKit
 class GameScene: SKScene {
     
     private var player: PlayerPlane?
+    private let scoreBackground = SKSpriteNode(imageNamed: "scores")
+    private let scoreLabel = SKLabelNode(text: "10 000")
+    private let menuButton = SKSpriteNode(imageNamed: "menu")
+    private let life1 = SKSpriteNode(imageNamed: "life")
+    private let life2 = SKSpriteNode(imageNamed: "life")
+    private let life3 = SKSpriteNode(imageNamed: "life")
     
     let screen = UIScreen.main.bounds //определили размер экрана
     
@@ -24,13 +30,42 @@ class GameScene: SKScene {
         self.spawnClouds()
         self.spawnIsland()
         
-        let deadline = DispatchTime.now() + .nanoseconds(1)
-        DispatchQueue.main.asyncAfter(deadline: deadline) { [weak self] in
-            self?.player?.performFly()
-        }
+        self.player?.performFly()
         
         self.spawnPowerUp()
         self.spawnEnemies()
+        self.configureUI()
+    }
+    
+    private func configureUI() {
+        self.scoreBackground.position = CGPoint(x: scoreBackground.size.width + 10,
+                                                y: self.view?.safeAreaLayoutGuide.layoutFrame.size.height ?? 0)
+        self.scoreBackground.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        self.scoreBackground.zPosition = 99
+        self.addChild(scoreBackground)
+        
+        self.scoreLabel.horizontalAlignmentMode = .right
+        self.scoreLabel.verticalAlignmentMode = .center
+        self.scoreLabel.position = CGPoint(x: -10, y: 3)
+        self.scoreLabel.zPosition = 100
+        self.scoreLabel.fontName = "AmericanTypewriter-Bold"
+        self.scoreLabel.fontSize = 30
+        self.scoreBackground.addChild(scoreLabel)
+        
+        self.menuButton.position = CGPoint(x: 20, y: 20)
+        self.menuButton.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        self.menuButton.zPosition = 100
+        self.addChild(menuButton)
+        
+        let lifes = [life1, life2, life3]
+        for (index, life) in lifes.enumerated() {
+            life.position = CGPoint(x: self.size.width - CGFloat(index + 1) * life.size.width + 3,
+                                    y: 20)
+            life.zPosition = 100
+            life.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+            self.addChild(life)
+            
+        }
     }
     
     private func spawnPowerUp() {
@@ -154,7 +189,7 @@ class GameScene: SKScene {
         }
         
         enumerateChildNodes(withName: "shotSprite") { node, stop in
-            if node.position.y >= self.size.height + 100 {
+            if node.position.y >= self.size.height + 20 {
                 node.removeFromParent()
             }
         }

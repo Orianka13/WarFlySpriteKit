@@ -10,24 +10,36 @@ import SpriteKit
 class MenuScene: SKScene {
     override func didMove(to view: SKView) {
         
-        Assets.shared.preloadAssets()
+        if !Assets.shared.isLoaded {
+            Assets.shared.preloadAssets()
+            Assets.shared.isLoaded = true
+        }
         
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
         
-        let texture = SKTexture(imageNamed: "play")
-        let button = SKSpriteNode(texture: texture)
+        let header = SKSpriteNode(imageNamed: "header1")
         
-        button.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        button.name = "runButton"
+        header.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 150)
         
-        self.addChild(button)
+        self.addChild(header)
+        
+        let titles = ["play", "options", "best"]
+        
+        for (index, title) in titles.enumerated() {
+            let button = ButtonNode(title: title, backgroundName: "button_background")
+            
+            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index) * 100)
+            button.name = title
+            button.label.name = title
+            addChild(button)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return } //добираемся до области касания, берем первое касание
         let node = self.atPoint(location) //получили объект куда мы тыкнули
         
-        if node.name == "runButton" { //если нода это кнопка то осуществляем переход
+        if node.name == "play" { //если нода это кнопка то осуществляем переход
             let transition = SKTransition.crossFade(withDuration: 1)
             let gameScene = GameScene(size: self.size)
             gameScene.scaleMode = .aspectFill

@@ -25,6 +25,7 @@
 		59077D9C28AD2CCC00420CF6 /* BitMaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59077D9B28AD2CCB00420CF6 /* BitMaskCategory.swift */; };
 		59077D9E28B78D0000420CF6 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59077D9D28B78CFF00420CF6 /* HUD.swift */; };
 		59077DA528B7A63400420CF6 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59077DA428B7A63300420CF6 /* ButtonNode.swift */; };
+		59077DA728B7AF8700420CF6 /* PauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59077DA628B7AF8600420CF6 /* PauseScene.swift */; };
 		59D9B094289A712200BE8AE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B093289A712200BE8AE5 /* AppDelegate.swift */; };
 		59D9B09A289A712200BE8AE5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B099289A712200BE8AE5 /* GameScene.swift */; };
 		59D9B09C289A712200BE8AE5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B09B289A712200BE8AE5 /* GameViewController.swift */; };
@@ -56,6 +57,7 @@
 		59077D9B28AD2CCB00420CF6 /* BitMaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMaskCategory.swift; sourceTree = "<group>"; };
 		59077D9D28B78CFF00420CF6 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		59077DA428B7A63300420CF6 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
+		59077DA628B7AF8600420CF6 /* PauseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScene.swift; sourceTree = "<group>"; };
 		59D9B090289A712200BE8AE5 /* WarFlySpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFlySpriteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D9B093289A712200BE8AE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59D9B099289A712200BE8AE5 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				59D9B099289A712200BE8AE5 /* GameScene.swift */,
 				59077D9928AB9C1100420CF6 /* MenuScene.swift */,
+				59077DA628B7AF8600420CF6 /* PauseScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				59077D5D28A1282900420CF6 /* PowerUp.swift in Sources */,
 				59077D9C28AD2CCC00420CF6 /* BitMaskCategory.swift in Sources */,
 				59077D9A28AB9C1200420CF6 /* MenuScene.swift in Sources */,
+				59077DA728B7AF8700420CF6 /* PauseScene.swift in Sources */,
 				59077D9E28B78D0000420CF6 /* HUD.swift in Sources */,
 				59077D9428AB72C800420CF6 /* Shot.swift in Sources */,
 				59D9B0AB289AA0E800BE8AE5 /* Background.swift in Sources */,

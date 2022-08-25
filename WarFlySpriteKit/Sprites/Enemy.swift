@@ -20,8 +20,8 @@ class Enemy: SKSpriteNode {
     init(enemyTexture: SKTexture) {
         let texture = enemyTexture
         super.init(texture: texture, color: .clear, size: CGSize(width: 221, height: 204))
-        self.xScale = 0.5
-        self.yScale = -0.5 //чтобы самолет смотрел в противоположную сторону(вниз)
+        self.xScale = 0.4
+        self.yScale = -0.4 //чтобы самолет смотрел в противоположную сторону(вниз)
         self.zPosition = 20
         self.name = "sprite" //чтобы удалять самолет по имени
         

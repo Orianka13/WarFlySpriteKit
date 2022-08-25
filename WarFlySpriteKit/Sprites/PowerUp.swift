@@ -22,7 +22,7 @@ class PowerUp: SKSpriteNode {
         let texture = textureAtlas.textureNamed(textureName)
         self.textureNameBeginsWith = String(textureName.dropLast(6)) // 01.png
         super.init(texture: texture, color: .clear, size: self.initialSize)
-        self.setScale(0.7)
+        self.setScale(0.5)
         self.name = "sprite" //присвоили имя нашем спрайту
         self.zPosition = 20
         

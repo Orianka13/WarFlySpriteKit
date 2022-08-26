@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    private let sceneManager = SceneManager.shared
+    
     private var player: PlayerPlane?
     private let hud = HUD()
     
@@ -19,6 +21,10 @@ class GameScene: SKScene {
     private let screen = UIScreen.main.bounds //определили размер экрана
     
     override func didMove(to view: SKView) {
+        
+        //проверим существует ли gameScene
+        guard self.sceneManager.gameScene == nil else { return }
+        self.sceneManager.gameScene = self
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector.zero

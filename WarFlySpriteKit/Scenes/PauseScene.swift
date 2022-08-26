@@ -8,6 +8,9 @@
 import SpriteKit
 
 class PauseScene: SKScene {
+    
+    private let sceneManager = SceneManager.shared
+    
     override func didMove(to view: SKView) {
         
         
@@ -36,10 +39,16 @@ class PauseScene: SKScene {
         let node = self.atPoint(location)
         
         if node.name == "restart" {
+            self.sceneManager.gameScene = nil
             let transition = SKTransition.crossFade(withDuration: 1)
             let gameScene = GameScene(size: self.size)
             gameScene.scaleMode = .aspectFill
             
+            self.scene?.view?.presentScene(gameScene, transition: transition)
+        } else if node.name == "resume" {
+            let transition = SKTransition.crossFade(withDuration: 1)
+            guard let gameScene = self.sceneManager.gameScene else { return }
+            gameScene.scaleMode = .aspectFill
             self.scene?.view?.presentScene(gameScene, transition: transition)
         }
     }

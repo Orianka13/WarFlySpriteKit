@@ -21,6 +21,7 @@ class GameScene: SKScene {
     private let screen = UIScreen.main.bounds //определили размер экрана
     
     override func didMove(to view: SKView) {
+        self.scene?.isPaused = false
         
         //проверим существует ли gameScene
         guard self.sceneManager.gameScene == nil else { return }
@@ -182,9 +183,13 @@ class GameScene: SKScene {
         let node = self.atPoint(location)
         
         if node.name == "pause" {
+            
             let transition = SKTransition.doorway(withDuration: 1)
             let pauseScene = PauseScene(size: self.size)
             pauseScene.scaleMode = .aspectFill
+            
+            self.sceneManager.gameScene = self//сохраняем состояние сцены в менеджер чтобы потом ее оттуда загрузить
+            self.scene?.isPaused = true //ставим сцену на паузу
             
             self.scene?.view?.presentScene(pauseScene, transition: transition)
         } else {

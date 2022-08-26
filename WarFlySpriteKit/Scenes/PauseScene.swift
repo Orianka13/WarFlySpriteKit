@@ -33,6 +33,14 @@ class PauseScene: SKScene {
             addChild(button)
         }
     }
+    //принудительно ставим сцену на паузу потому что баг в спрайт кит и пауза слетает
+    override func update(_ currentTime: TimeInterval) {
+        if let gameScene = self.sceneManager.gameScene {
+            if !gameScene.isPaused {
+                gameScene.isPaused = true
+            }
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let location = touches.first?.location(in: self) else { return } 

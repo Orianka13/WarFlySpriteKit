@@ -11,8 +11,6 @@ class PauseScene: ParentScene {
     
     override func didMove(to view: SKView) {
         
-        self.backgroundColor = backgoundColor
-        
         setHeader(withName: "pause", andBackground: "header_background")
         
         let titles = ["restart", "options", "resume"]

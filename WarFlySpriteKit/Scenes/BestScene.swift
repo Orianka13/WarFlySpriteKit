@@ -10,8 +10,6 @@ import SpriteKit
 class BestScene: ParentScene {
     override func didMove(to view: SKView) {
         
-        self.backgroundColor = backgoundColor
-        
         setHeader(withName: "best", andBackground: "header_background")
         
         let score = getMenuButton(withName: "score", title: "10 467",

@@ -15,8 +15,6 @@ class MenuScene: ParentScene {
             Assets.shared.isLoaded = true
         }
         
-        self.backgroundColor = backgoundColor
-        
         setHeader(withName: nil, andBackground: "header1")
         
         let titles = ["play", "options", "best"]

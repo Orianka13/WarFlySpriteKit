@@ -11,8 +11,6 @@ class OptionsScene: ParentScene {
     
     override func didMove(to view: SKView) {
         
-        self.backgroundColor = backgoundColor
-        
         setHeader(withName: "options", andBackground: "header_background")
         
         let music = getMenuButton(withName: "music", title: nil,

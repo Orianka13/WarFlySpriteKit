@@ -7,20 +7,15 @@
 
 import SpriteKit
 
-class PauseScene: SKScene {
+class PauseScene: ParentScene {
     
-    private let sceneManager = SceneManager.shared
     
     override func didMove(to view: SKView) {
         
         
         self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
         
-        let header = ButtonNode(title: "pause", backgroundName: "header_background")
-        
-        header.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 150)
-        
-        self.addChild(header)
+        setHeader(withName: "pause", andBackground: "header_background")
         
         let titles = ["restart", "options", "resume"]
         

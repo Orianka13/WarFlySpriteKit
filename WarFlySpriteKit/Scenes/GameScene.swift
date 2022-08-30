@@ -9,9 +9,7 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene {
-    
-    private let sceneManager = SceneManager.shared
+class GameScene: ParentScene {
     
     private var player: PlayerPlane?
     private let hud = HUD()
@@ -24,8 +22,8 @@ class GameScene: SKScene {
         self.scene?.isPaused = false
         
         //проверим существует ли gameScene
-        guard self.sceneManager.gameScene == nil else { return }
-        self.sceneManager.gameScene = self
+        guard sceneManager.gameScene == nil else { return }
+        sceneManager.gameScene = self
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector.zero

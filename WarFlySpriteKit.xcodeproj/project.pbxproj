@@ -37,6 +37,7 @@
 		59D9B0AD289AA55D00BE8AE5 /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AC289AA55D00BE8AE5 /* Island.swift */; };
 		59D9B0B0289AADCC00BE8AE5 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */; };
 		59D9B0B2289BC56C00BE8AE5 /* PlayerPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9B0B1289BC56C00BE8AE5 /* PlayerPlane.swift */; };
+		59E5095028BE18030079D047 /* ParentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E5094F28BE18030079D047 /* ParentScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		59D9B0AC289AA55D00BE8AE5 /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
 		59D9B0AF289AADCC00BE8AE5 /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		59D9B0B1289BC56C00BE8AE5 /* PlayerPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPlane.swift; sourceTree = "<group>"; };
+		59E5094F28BE18030079D047 /* ParentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				59D9B099289A712200BE8AE5 /* GameScene.swift */,
 				59077D9928AB9C1100420CF6 /* MenuScene.swift */,
 				59077DA628B7AF8600420CF6 /* PauseScene.swift */,
+				59E5094F28BE18030079D047 /* ParentScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				59077D5D28A1282900420CF6 /* PowerUp.swift in Sources */,
 				59077D9C28AD2CCC00420CF6 /* BitMaskCategory.swift in Sources */,
 				59077D9A28AB9C1200420CF6 /* MenuScene.swift in Sources */,
+				59E5095028BE18030079D047 /* ParentScene.swift in Sources */,
 				59077DA728B7AF8700420CF6 /* PauseScene.swift in Sources */,
 				59077D9E28B78D0000420CF6 /* HUD.swift in Sources */,
 				59077D9428AB72C800420CF6 /* Shot.swift in Sources */,

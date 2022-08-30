@@ -19,14 +19,7 @@ class PauseScene: ParentScene {
         
         let titles = ["restart", "options", "resume"]
         
-        for (index, title) in titles.enumerated() {
-            let button = ButtonNode(title: title, backgroundName: "button_background")
-            
-            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index) * 100)
-            button.name = title
-            button.label.name = title
-            addChild(button)
-        }
+        setMenuButtons(withTitle: titles)
     }
     //принудительно ставим сцену на паузу потому что баг в спрайт кит и пауза слетает
     override func update(_ currentTime: TimeInterval) {

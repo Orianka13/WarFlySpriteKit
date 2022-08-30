@@ -18,4 +18,15 @@ class ParentScene: SKScene {
         header.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 150)
         self.addChild(header)
     }
+    
+    func setMenuButtons(withTitle titleArray: [String]) {
+        for (index, title) in titleArray.enumerated() {
+            let button = ButtonNode(title: title, backgroundName: "button_background")
+            
+            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index) * 100)
+            button.name = title
+            button.label.name = title
+            addChild(button)
+        }
+    }
 }

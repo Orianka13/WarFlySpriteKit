@@ -21,14 +21,7 @@ class MenuScene: ParentScene {
         
         let titles = ["play", "options", "best"]
         
-        for (index, title) in titles.enumerated() {
-            let button = ButtonNode(title: title, backgroundName: "button_background")
-            
-            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index) * 100)
-            button.name = title
-            button.label.name = title
-            addChild(button)
-        }
+        setMenuButtons(withTitle: titles)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

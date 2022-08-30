@@ -34,23 +34,15 @@ class PauseScene: ParentScene {
         
         if node.name == "restart" {
             self.sceneManager.gameScene = nil
-            let transition = SKTransition.crossFade(withDuration: 1)
-            let gameScene = GameScene(size: self.size)
-            gameScene.scaleMode = .aspectFill
+            makeTheTransition(to: GameScene(size: self.size), handler: nil)
             
-            self.scene?.view?.presentScene(gameScene, transition: transition)
         } else if node.name == "resume" {
-            let transition = SKTransition.crossFade(withDuration: 1)
-            guard let gameScene = self.sceneManager.gameScene else { return }
-            gameScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(gameScene, transition: transition)
+            makeTheTransition(to: self.sceneManager.gameScene, handler: nil)
             
         } else if node.name == "options" {
-            let transition = SKTransition.crossFade(withDuration: 1)
-            let optionsScene = OptionsScene(size: self.size)
-            optionsScene.backScene = self
-            optionsScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(optionsScene, transition: transition)
+            makeTheTransition(to: OptionsScene(size: self.size)) { scene in
+                scene.backScene = self
+            }
         }
     }
 }

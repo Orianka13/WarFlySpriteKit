@@ -15,24 +15,20 @@ class OptionsScene: ParentScene {
         
         setHeader(withName: "options", andBackground: "header_background")
         
-        let music = ButtonNode(title: nil, backgroundName: "music")
-        music.position = CGPoint(x: self.frame.midX - 50, y: self.frame.midY)
-        music.name = "music"
-        music.label.isHidden = true
+        let music = getMenuButton(withName: "music", title: nil,
+                                  location: CGPoint(x: self.frame.midX - 50, y: self.frame.midY),
+                                  backgroundName: "music")
         addChild(music)
         
-        let sound = ButtonNode(title: nil, backgroundName: "sound")
-        sound.position = CGPoint(x: self.frame.midX + 50, y: self.frame.midY)
-        sound.name = "sound"
-        sound.label.isHidden = true
+        let sound = getMenuButton(withName: "sound", title: nil,
+                                  location: CGPoint(x: self.frame.midX + 50, y: self.frame.midY),
+                                  backgroundName: "sound")
         addChild(sound)
         
-        let back = ButtonNode(title: "back", backgroundName: "button_background")
-        back.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 100)
-        back.name = "back"
-        back.label.name = "back"
+        let back = getMenuButton(withName: "back", title: "back",
+                                 location: CGPoint(x: self.frame.midX, y: self.frame.midY - 100),
+                                 backgroundName: "button_background")
         addChild(back)
-        
         
     }
     
@@ -42,13 +38,12 @@ class OptionsScene: ParentScene {
         
         if node.name == "music" {
             print("music")
+            
         } else if node.name == "sound" {
             print("sound")
+            
         } else if node.name == "back" {
-            let transition = SKTransition.crossFade(withDuration: 1)
-            guard let backScene = backScene else { return }
-            backScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(backScene, transition: transition)
+            makeTheTransition(to: backScene, handler: nil)
         }
     }
 }

@@ -29,25 +29,17 @@ class MenuScene: ParentScene {
         let node = self.atPoint(location) //получили объект куда мы тыкнули
         
         if node.name == "play" { //если нода это кнопка то осуществляем переход
-            let transition = SKTransition.crossFade(withDuration: 1)
-            let gameScene = GameScene(size: self.size)
-            gameScene.scaleMode = .aspectFill
-            
-            self.scene?.view?.presentScene(gameScene, transition: transition)
+            makeTheTransition(to: GameScene(size: self.size), handler: nil)
             
         } else if node.name == "options" {
-            let transition = SKTransition.crossFade(withDuration: 1)
-            let optionsScene = OptionsScene(size: self.size)
-            optionsScene.backScene = self
-            optionsScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(optionsScene, transition: transition)
+            makeTheTransition(to: OptionsScene(size: self.size)) { scene in
+                scene.backScene = self
+            }
             
         } else if node.name == "best" {
-            let transition = SKTransition.crossFade(withDuration: 1)
-            let bestScene = BestScene(size: self.size)
-            bestScene.backScene = self
-            bestScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(bestScene, transition: transition)
+            makeTheTransition(to: BestScene(size: self.size)) { scene in
+                scene.backScene = self
+            }
         }
     }
 }

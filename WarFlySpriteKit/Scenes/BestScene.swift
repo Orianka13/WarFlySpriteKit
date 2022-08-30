@@ -14,16 +14,14 @@ class BestScene: ParentScene {
         
         setHeader(withName: "best", andBackground: "header_background")
         
-        let score = ButtonNode(title: "10 467", backgroundName: "button_background")
-        score.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        score.name = "score"
-        score.label.name = "10 467"
+        let score = getMenuButton(withName: "score", title: "10 467",
+                                  location: CGPoint(x: self.frame.midX, y: self.frame.midY),
+                                  backgroundName: "button_background")
         addChild(score)
         
-        let back = ButtonNode(title: "back", backgroundName: "button_background")
-        back.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 100)
-        back.name = "back"
-        back.label.name = "back"
+        let back = getMenuButton(withName: "back", title: "back",
+                                 location: CGPoint(x: self.frame.midX, y: self.frame.midY - 100),
+                                 backgroundName: "button_background")
         addChild(back)
     }
     
@@ -32,10 +30,7 @@ class BestScene: ParentScene {
         let node = self.atPoint(location)
         
        if node.name == "back" {
-            let transition = SKTransition.crossFade(withDuration: 1)
-            guard let backScene = backScene else { return }
-            backScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(backScene, transition: transition)
+           makeTheTransition(to: backScene, handler: nil)
         }
     }
 }

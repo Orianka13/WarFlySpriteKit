@@ -15,7 +15,7 @@ class MenuScene: ParentScene {
             Assets.shared.isLoaded = true
         }
         
-        self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
+        self.backgroundColor = backgoundColor
         
         setHeader(withName: nil, andBackground: "header1")
         
@@ -34,6 +34,13 @@ class MenuScene: ParentScene {
             gameScene.scaleMode = .aspectFill
             
             self.scene?.view?.presentScene(gameScene, transition: transition)
+            
+        } else if node.name == "options" {
+            let transition = SKTransition.crossFade(withDuration: 1)
+            let optionsScene = OptionsScene(size: self.size)
+            optionsScene.backScene = self
+            optionsScene.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(optionsScene, transition: transition)
         }
     }
 }

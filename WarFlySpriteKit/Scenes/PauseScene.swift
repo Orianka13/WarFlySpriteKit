@@ -9,11 +9,9 @@ import SpriteKit
 
 class PauseScene: ParentScene {
     
-    
     override func didMove(to view: SKView) {
         
-        
-        self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1.0)
+        self.backgroundColor = backgoundColor
         
         setHeader(withName: "pause", andBackground: "header_background")
         
@@ -46,6 +44,13 @@ class PauseScene: ParentScene {
             guard let gameScene = self.sceneManager.gameScene else { return }
             gameScene.scaleMode = .aspectFill
             self.scene?.view?.presentScene(gameScene, transition: transition)
+            
+        } else if node.name == "options" {
+            let transition = SKTransition.crossFade(withDuration: 1)
+            let optionsScene = OptionsScene(size: self.size)
+            optionsScene.backScene = self
+            optionsScene.scaleMode = .aspectFill
+            self.scene?.view?.presentScene(optionsScene, transition: transition)
         }
     }
 }

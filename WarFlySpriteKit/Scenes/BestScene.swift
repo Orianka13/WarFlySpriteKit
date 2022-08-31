@@ -9,7 +9,7 @@ import SpriteKit
 
 class BestScene: ParentScene {
     
-    private var places = [10, 100, 10000]
+    private var places = [1, 4, 2]
     
     override func didMove(to view: SKView) {
         

@@ -249,7 +249,11 @@ extension GameScene: SKPhysicsContactDelegate {
             guard let explosion = explosion else { return }
             addChild(explosion)
             self.run(waitForExplosionAction) { explosion.removeFromParent() }
-            print(self.lives)
+            
+            if self.lives == 0 {
+                makeTheTransition(to: GameOverScene(size: self.size), handler: nil)
+            }
+            
         case [.player, .powerUp]:
             print("player VS powerUp")
         case [.enemy, .shot]:

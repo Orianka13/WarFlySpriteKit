@@ -42,6 +42,7 @@
 		59E5095428BE256D0079D047 /* BestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E5095328BE256D0079D047 /* BestScene.swift */; };
 		59E5095728BF5D2B0079D047 /* EnemyExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 59E5095528BF5D2B0079D047 /* EnemyExplosion.sks */; };
 		59E5095828BF5D2B0079D047 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E5095628BF5D2B0079D047 /* Assets.xcassets */; };
+		59E5095B28BF68A20079D047 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E5095A28BF68A20079D047 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		59E5095328BE256D0079D047 /* BestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestScene.swift; sourceTree = "<group>"; };
 		59E5095528BF5D2B0079D047 /* EnemyExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyExplosion.sks; sourceTree = "<group>"; };
 		59E5095628BF5D2B0079D047 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		59E5095A28BF68A20079D047 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				59E5094F28BE18030079D047 /* ParentScene.swift */,
 				59E5095128BE1EFC0079D047 /* OptionsScene.swift */,
 				59E5095328BE256D0079D047 /* BestScene.swift */,
+				59E5095A28BF68A20079D047 /* GameOverScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				59D9B094289A712200BE8AE5 /* AppDelegate.swift in Sources */,
 				59077D9828AB934300420CF6 /* Assets.swift in Sources */,
 				59077D8128A26A5600420CF6 /* Enemy.swift in Sources */,
+				59E5095B28BF68A20079D047 /* GameOverScene.swift in Sources */,
 				59077DA928B8A04B00420CF6 /* SceneManager.swift in Sources */,
 				59077D8F28AA572100420CF6 /* GreenPowerUp.swift in Sources */,
 				59D9B0AD289AA55D00BE8AE5 /* Island.swift in Sources */,

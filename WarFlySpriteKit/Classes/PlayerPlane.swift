@@ -30,6 +30,21 @@ class PlayerPlane: SKSpriteNode {
     
     let screenSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     
+    func livesGreenBoostAnimation() -> SKAction{
+        let colorAction = SKAction.colorize(with: .green, colorBlendFactor: 1.0, duration: 0.2)
+        let uncolorAction = SKAction.colorize(with: .green, colorBlendFactor: 0.0, duration: 0.2)
+        let sequenseAction = SKAction.sequence([colorAction, uncolorAction])
+        let repeatAction = SKAction.repeat(sequenseAction, count: 5)
+        return repeatAction
+    }
+    
+    func livesBlueBoostAnimation() -> SKAction{
+        let colorAction = SKAction.colorize(with: .blue, colorBlendFactor: 1.0, duration: 0.2)
+        let uncolorAction = SKAction.colorize(with: .blue, colorBlendFactor: 0.0, duration: 0.2)
+        let sequenseAction = SKAction.sequence([colorAction, uncolorAction])
+        let repeatAction = SKAction.repeat(sequenseAction, count: 5)
+        return repeatAction
+    }
 
     static func populate(at point: CGPoint) -> PlayerPlane {
         let atlas = Assets.shared.playerPlaneAtlas

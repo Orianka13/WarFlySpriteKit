@@ -265,38 +265,29 @@ extension GameScene: SKPhysicsContactDelegate {
             
         case [.player, .powerUp]:
             print("player VS powerUp")
-            if contact.bodyA.node?.name == "bluePowerUp" {
-                if contact.bodyA.node?.parent != nil {
+            
+            if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
+                if contact.bodyA.node?.name == "bluePowerUp" {
+                    contact.bodyA.node?.removeFromParent()
+                    self.lives = 3
+                    player?.run(player?.livesBlueBoostAnimation() ?? SKAction())
+                } else if contact.bodyB.node?.name == "bluePowerUp" {
+                    contact.bodyB.node?.removeFromParent()
+                    self.lives = 3
+                    player?.run(player?.livesBlueBoostAnimation() ?? SKAction())
+                }
+                if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
                     if self.lives < 3 {
                         self.lives += 1
                     }
-                }
-            } else {
-                if contact.bodyB.node?.parent != nil {
+                    player?.run(player?.livesGreenBoostAnimation() ?? SKAction())
+                } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
                     if self.lives < 3 {
                         self.lives += 1
                     }
-                }
-            }
-            if contact.bodyA.node?.name == "greenPowerUp" {
-                if contact.bodyA.node?.parent != nil {
-                    contact.bodyA.node?.removeFromParent()
-                    if self.lives < 2 {
-                        self.lives += 2
-                    } else if self.lives < 3 {
-                        self.lives += 1
-                    }
-                }
-            } else {
-                if contact.bodyB.node?.parent != nil {
-                    contact.bodyB.node?.removeFromParent()
-                    if self.lives < 2 {
-                        self.lives += 2
-                    } else if self.lives < 3 {
-                        self.lives += 1
-                    }
+                    player?.run(player?.livesGreenBoostAnimation() ?? SKAction())
                 }
             }
         case [.enemy, .shot]:
@@ -305,16 +296,14 @@ extension GameScene: SKPhysicsContactDelegate {
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()
                 self.score += 1
+                guard let explosion = explosion else { return }
+                addChild(explosion)
+                self.run(waitForExplosionAction) { explosion.removeFromParent() }
             }
-            guard let explosion = explosion else { return }
-            addChild(explosion)
-            self.run(waitForExplosionAction) { explosion.removeFromParent() }
         default:
             preconditionFailure("Unable to detect collision category")
         }
     }
-    
     func didEnd(_ contact: SKPhysicsContact) {
-        
     }
 }

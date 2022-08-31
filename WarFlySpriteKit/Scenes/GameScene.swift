@@ -185,7 +185,16 @@ class GameScene: ParentScene {
                 node.removeFromParent() //удаляем ее с экрана
             }
         }
-        
+        enumerateChildNodes(withName: "bluePowerUp") { node, stop in
+            if node.position.y <= -50 {
+                node.removeFromParent()
+            }
+        }
+        enumerateChildNodes(withName: "greenPowerUp") { node, stop in
+            if node.position.y <= -50 {
+                node.removeFromParent()
+            }
+        }
         enumerateChildNodes(withName: "shotSprite") { node, stop in
             if node.position.y >= self.size.height + 20 {
                 node.removeFromParent()
@@ -256,6 +265,40 @@ extension GameScene: SKPhysicsContactDelegate {
             
         case [.player, .powerUp]:
             print("player VS powerUp")
+            if contact.bodyA.node?.name == "bluePowerUp" {
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                    if self.lives < 3 {
+                        self.lives += 1
+                    }
+                }
+            } else {
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                    if self.lives < 3 {
+                        self.lives += 1
+                    }
+                }
+            }
+            if contact.bodyA.node?.name == "greenPowerUp" {
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                    if self.lives < 2 {
+                        self.lives += 2
+                    } else if self.lives < 3 {
+                        self.lives += 1
+                    }
+                }
+            } else {
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                    if self.lives < 2 {
+                        self.lives += 2
+                    } else if self.lives < 3 {
+                        self.lives += 1
+                    }
+                }
+            }
         case [.enemy, .shot]:
             print("enemy VS shot")
             if contact.bodyA.node?.parent != nil || contact.bodyB.node?.parent != nil {

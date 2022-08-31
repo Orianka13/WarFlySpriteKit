@@ -9,11 +9,11 @@ import SpriteKit
 
 class HUD: SKNode {
     private let scoreBackground = SKSpriteNode(imageNamed: "scores")
-    private let scoreLabel = SKLabelNode(text: "10 000")
+    let scoreLabel = SKLabelNode(text: "0")
     private let menuButton = SKSpriteNode(imageNamed: "menu")
-    private let life1 = SKSpriteNode(imageNamed: "life")
-    private let life2 = SKSpriteNode(imageNamed: "life")
-    private let life3 = SKSpriteNode(imageNamed: "life")
+    let life1 = SKSpriteNode(imageNamed: "life")
+    let life2 = SKSpriteNode(imageNamed: "life")
+    let life3 = SKSpriteNode(imageNamed: "life")
     
     func configureUI(screenSize: CGSize, layotSize: CGSize) {
         self.scoreBackground.anchorPoint = CGPoint(x: 0.0, y: 1.0)

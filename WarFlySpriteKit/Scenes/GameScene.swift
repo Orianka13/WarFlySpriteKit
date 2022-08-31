@@ -13,6 +13,31 @@ class GameScene: ParentScene {
     
     private var player: PlayerPlane?
     private let hud = HUD()
+    private var score = 0 {
+        didSet {
+            hud.scoreLabel.text = "\(score)"
+        }
+    }
+    private var lives = 3 {
+        didSet {
+            switch lives {
+            case 3:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = false
+                hud.life3.isHidden = false
+            case 2:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = false
+                hud.life3.isHidden = true
+            case 1:
+                hud.life1.isHidden = false
+                hud.life2.isHidden = true
+                hud.life3.isHidden = true
+            default:
+                break
+            }
+        }
+    }
     
     private let screenSize = UIScreen.main.bounds.size
     
@@ -202,6 +227,7 @@ extension GameScene: SKPhysicsContactDelegate {
         let explosion = SKEmitterNode(fileNamed: "EnemyExplosion")
         let contactPoint = contact.contactPoint
         explosion?.position = contactPoint
+        explosion?.zPosition = 25
         let waitForExplosionAction = SKAction.wait(forDuration: 1)
         
         let contactCategory: BitMaskCategory = [contact.bodyA.category, contact.bodyB.category]
@@ -210,19 +236,29 @@ extension GameScene: SKPhysicsContactDelegate {
         case [.enemy, .player]:
             print("player VS enemy")
             if contact.bodyA.node?.name == "sprite" {
-                contact.bodyA.node?.removeFromParent()
+                if contact.bodyA.node?.parent != nil {
+                    contact.bodyA.node?.removeFromParent()
+                    self.lives -= 1
+                }
             } else {
-                contact.bodyB.node?.removeFromParent()
+                if contact.bodyB.node?.parent != nil {
+                    contact.bodyB.node?.removeFromParent()
+                    self.lives -= 1
+                }
             }
             guard let explosion = explosion else { return }
             addChild(explosion)
             self.run(waitForExplosionAction) { explosion.removeFromParent() }
+            print(self.lives)
         case [.player, .powerUp]:
             print("player VS powerUp")
         case [.enemy, .shot]:
             print("enemy VS shot")
-            contact.bodyA.node?.removeFromParent()
-            contact.bodyB.node?.removeFromParent()
+            if contact.bodyA.node?.parent != nil || contact.bodyB.node?.parent != nil {
+                contact.bodyA.node?.removeFromParent()
+                contact.bodyB.node?.removeFromParent()
+                self.score += 1
+            }
             guard let explosion = explosion else { return }
             addChild(explosion)
             self.run(waitForExplosionAction) { explosion.removeFromParent() }

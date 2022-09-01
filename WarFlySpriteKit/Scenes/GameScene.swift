@@ -280,6 +280,8 @@ extension GameScene: SKPhysicsContactDelegate {
             self.run(waitForExplosionAction) { explosion.removeFromParent() }
             
             if self.lives == 0 {
+                gameSettings.currentScore = self.score
+                gameSettings.saveScores()
                 makeTheTransition(to: GameOverScene(size: self.size), handler: nil)
             }
             

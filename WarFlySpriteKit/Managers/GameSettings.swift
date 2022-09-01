@@ -14,12 +14,31 @@ class GameSettings: NSObject {
     var isMusic = true
     var isSound = true
     
+    var highScore = [Int]()
+    var currentScore = 0
+    let highScoreKey = "highScore"
+    
     private let musicKey = "music"
     private let soundKey = "sound"
     
     override init() {
         super.init()
         self.loadGameSettings()
+        self.loadScores()
+    }
+    
+    func saveScores() {
+        self.highScore.append(currentScore)
+        self.highScore = Array(self.highScore.sorted{ $0 > $1 }.prefix(3))
+        
+        ud.set(self.highScore, forKey: self.highScoreKey)
+        ud.synchronize()
+    }
+    
+    func loadScores() {
+        guard self.ud.value(forKey: self.highScoreKey) != nil else { return }
+        self.highScore = self.ud.array(forKey: self.highScoreKey) as! [Int]
+        
     }
     
     func saveGameSettings() {

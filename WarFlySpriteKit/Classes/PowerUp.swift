@@ -15,7 +15,6 @@ class PowerUp: SKSpriteNode {
     private var animationSpriteArray = [SKTexture]()
     private var textureNameBeginsWith = ""
     
-    //вызываем дезигнейтет инит
     init(textureAtlas: SKTextureAtlas) {
         self.textureAtlas = textureAtlas
         let textureName = textureAtlas.textureNames.sorted()[0]
@@ -23,7 +22,7 @@ class PowerUp: SKSpriteNode {
         self.textureNameBeginsWith = String(textureName.dropLast(6)) // 01.png
         super.init(texture: texture, color: .clear, size: self.initialSize)
         self.setScale(0.5)
-        self.name = "sprite" //присвоили имя нашем спрайту
+        self.name = "sprite"
         self.zPosition = 20
         
         self.physicsBody = SKPhysicsBody(texture: texture,
@@ -46,7 +45,6 @@ class PowerUp: SKSpriteNode {
         self.run(moveForvard)
     }
     
-    //создадим анимацию
     private func performRotation() {
         for i in 1...15 {
             let number = String(format: "%02d", i)

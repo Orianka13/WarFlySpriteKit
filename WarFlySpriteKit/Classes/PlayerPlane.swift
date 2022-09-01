@@ -56,10 +56,10 @@ class PlayerPlane: SKSpriteNode {
         
         playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture,
                                                 alphaThreshold: 0.5,
-                                                size: playerPlane.size) //создали физическое тело объекта
-        playerPlane.physicsBody?.isDynamic = false //если в нас кто то влетит-мы не отскочим, статичны
-        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue //присвоили битовую маску
-        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue //битовые маски с которыми игрок сталкивается
+                                                size: playerPlane.size)
+        playerPlane.physicsBody?.isDynamic = false
+        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue
+        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
         playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
         
         return playerPlane
@@ -67,7 +67,7 @@ class PlayerPlane: SKSpriteNode {
     
     func checkPosition() {
         
-        self.position.x += xAcceleration * 50 //перемещаем самолет
+        self.position.x += xAcceleration * 50
         
         if self.position.x < -70 {
             self.position.x = screenSize.width + 70
@@ -81,7 +81,7 @@ class PlayerPlane: SKSpriteNode {
         
         self.preloadTextureArrays()
         
-        self.motionManager.accelerometerUpdateInterval = 0.2 //замеряет ускорения каждые 0.2 сек
+        self.motionManager.accelerometerUpdateInterval = 0.2
         self.motionManager.startAccelerometerUpdates(to: OperationQueue.current ?? OperationQueue()) { [weak self] data, error in
             if let data = data {
                 let acceleration = data.acceleration
@@ -89,7 +89,6 @@ class PlayerPlane: SKSpriteNode {
             }
         }
         
-        //вызовем метод movementDirectionCheck() раз в секунду
         let planeWaitAction = SKAction.wait(forDuration: 1.0)
         
         let planeDirectionCheckAction = SKAction.run { [weak self] in
@@ -101,8 +100,6 @@ class PlayerPlane: SKSpriteNode {
         self.run(playSequenceForever)
     }
     
-    
-    //определим какой массив текстур нужно использовать:
     private func movementDirectionCheck() {
         if self.xAcceleration > 0.02, self.moveDirection != .right, self.stillTurning == false {
             self.stillTurning = true
@@ -117,10 +114,8 @@ class PlayerPlane: SKSpriteNode {
             self.turnPlane(direction: .none)
         }
     }
-    
-    //метод отвечающий за анимацию поворотов
+
     private func turnPlane(direction: TurnDirection) {
-        //создадим массив и заполним его в зависимости от флага поворота
         var array = [SKTexture]()
         
         if direction == .right {
@@ -131,8 +126,7 @@ class PlayerPlane: SKSpriteNode {
             array = forwardTextureArrayAnimation
         }
         
-        //создаем 2 action: поворот в одну сторону и возврат в ровное положение
-        let forwardAction = SKAction.animate(with: array, timePerFrame: 0.05, resize: true, restore: false) //resize - изменяется размер в зависимоти от размера текстур на экране, restore - возврат к первому кадру анимации
+        let forwardAction = SKAction.animate(with: array, timePerFrame: 0.05, resize: true, restore: false)
         let backwardAction = SKAction.animate(with: array.reversed(), timePerFrame: 0.05, resize: true, restore: false)
         
         let sequenceAction = SKAction.sequence([forwardAction, backwardAction])
@@ -142,7 +136,6 @@ class PlayerPlane: SKSpriteNode {
         }
     }
     
-    //метод в котором перебираем все изображения и помещаем в различные массивы
     private func preloadTextureArrays() {
         for i in 0...2 {
             self.fillTextureArray(_strides: self.strides[i]) { [weak self] array in

@@ -43,22 +43,21 @@ class GameScene: ParentScene {
     
     private let screenSize = UIScreen.main.bounds.size
     
-    private let screen = UIScreen.main.bounds //определили размер экрана
+    private let screen = UIScreen.main.bounds
     
     override func didMove(to view: SKView) {
         
         gameSettings.loadGameSettings()
         
         if gameSettings.isMusic {
-            if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") { // проверяем есть ли файл с музыкой в проекте
-                self.backgroundMusic = SKAudioNode(url: musicURL) //создаем аудио нод
-                addChild(backgroundMusic) //вызываем его
+            if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+                self.backgroundMusic = SKAudioNode(url: musicURL)
+                addChild(backgroundMusic)
             }
         }
         
         self.scene?.isPaused = false
         
-        //проверим существует ли gameScene
         guard sceneManager.gameScene == nil else { return }
         sceneManager.gameScene = self
         
@@ -121,7 +120,7 @@ class GameScene: ParentScene {
             let spawnEnemy = SKAction.run { [ weak self] in
                 
                 let textureNames = textureAtlas.textureNames.sorted()
-                let textureName = textureNames[12] //вернули массив имен в атласе чтобы взять 12-ый элемент
+                let textureName = textureNames[12]
                 
                 let enemy = Enemy(enemyTexture: textureAtlas.textureNamed(textureName))
                 enemy.position = CGPoint(x: (self?.size.width ?? 0) / 2, y: (self?.size.height ?? 0) + 110)
@@ -138,26 +137,24 @@ class GameScene: ParentScene {
     }
     
     private func spawnClouds() {
-        //создаем 2 action: 1 - интервал когда ничего происходить не будет, 2 - генерация нашего объекта
         let spawnCloudWait = SKAction.wait(forDuration: 1)
         let spawnCloudAction = SKAction.run {
             let cloud = Cloud.populate(at: nil)
             self.addChild(cloud)
         }
         let spawnCloydSequence = SKAction.sequence([spawnCloudWait, spawnCloudAction])
-        let spawnCloudForever = SKAction.repeatForever(spawnCloydSequence) //бесконечно генерируем облака каждую секунду
+        let spawnCloudForever = SKAction.repeatForever(spawnCloydSequence)
         run(spawnCloudForever)
     }
     
     private func spawnIsland() {
-        //создаем 2 action: 1 - интервал когда ничего происходить не будет, 2 - генерация нашего объекта
         let spawnIslandWait = SKAction.wait(forDuration: 2)
         let spawnIslandAction = SKAction.run {
             let island = Island.populate(at: nil)
             self.addChild(island)
         }
         let spawnIslandSequence = SKAction.sequence([spawnIslandWait, spawnIslandAction])
-        let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence) //бесконечно генерируем острова каждые 2 секунды
+        let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence)
         run(spawnIslandForever)
     }
     
@@ -193,8 +190,8 @@ class GameScene: ParentScene {
         player.checkPosition()
         
         enumerateChildNodes(withName: "sprite") { node, stop in
-            if node.position.y <= -100 { //если нод внизу за пределами экрана
-                node.removeFromParent() //удаляем ее с экрана
+            if node.position.y <= -100 {
+                node.removeFromParent()
             }
         }
         enumerateChildNodes(withName: "bluePowerUp") { node, stop in
@@ -219,7 +216,6 @@ class GameScene: ParentScene {
         shot.position = self.player?.position ?? CGPoint()
         shot.startMovement()
         self.addChild(shot)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -232,8 +228,8 @@ class GameScene: ParentScene {
             let pauseScene = PauseScene(size: self.size)
             pauseScene.scaleMode = .aspectFill
             
-            self.sceneManager.gameScene = self//сохраняем состояние сцены в менеджер чтобы потом ее оттуда загрузить
-            self.scene?.isPaused = true //ставим сцену на паузу
+            self.sceneManager.gameScene = self
+            self.scene?.isPaused = true
             
             self.scene?.view?.presentScene(pauseScene, transition: transition)
         } else {
@@ -255,7 +251,6 @@ extension GameScene: SKPhysicsContactDelegate {
         
         switch contactCategory {
         case [.enemy, .player]:
-            print("player VS enemy")
             if contact.bodyA.node?.name == "sprite" {
                 if contact.bodyA.node?.parent != nil {
                     contact.bodyA.node?.removeFromParent()
@@ -286,8 +281,6 @@ extension GameScene: SKPhysicsContactDelegate {
             }
             
         case [.player, .powerUp]:
-            print("player VS powerUp")
-            
             if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
                 if contact.bodyA.node?.name == "bluePowerUp" {
                     contact.bodyA.node?.removeFromParent()
@@ -325,7 +318,6 @@ extension GameScene: SKPhysicsContactDelegate {
                 }
             }
         case [.enemy, .shot]:
-            print("enemy VS shot")
             if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()

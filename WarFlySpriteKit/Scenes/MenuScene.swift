@@ -23,10 +23,10 @@ class MenuScene: ParentScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let location = touches.first?.location(in: self) else { return } //добираемся до области касания, берем первое касание
-        let node = self.atPoint(location) //получили объект куда мы тыкнули
+        guard let location = touches.first?.location(in: self) else { return }
+        let node = self.atPoint(location)
         
-        if node.name == "play" { //если нода это кнопка то осуществляем переход
+        if node.name == "play" { 
             makeTheTransition(to: GameScene(size: self.size), handler: nil)
             
         } else if node.name == "options" {

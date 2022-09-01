@@ -17,7 +17,7 @@ class PauseScene: ParentScene {
         
         setMenuButtons(withTitle: titles)
     }
-    //принудительно ставим сцену на паузу потому что баг в спрайт кит и пауза слетает
+
     override func update(_ currentTime: TimeInterval) {
         if let gameScene = self.sceneManager.gameScene {
             if !gameScene.isPaused {

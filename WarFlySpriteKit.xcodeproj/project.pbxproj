@@ -44,6 +44,9 @@
 		59E5095828BF5D2B0079D047 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59E5095628BF5D2B0079D047 /* Assets.xcassets */; };
 		59E5095B28BF68A20079D047 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E5095A28BF68A20079D047 /* GameOverScene.swift */; };
 		59E5095D28C0DEA60079D047 /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 59E5095C28C0DEA50079D047 /* hitSound.wav */; };
+		59E5095F28C0E2D60079D047 /* backgroundMusic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 59E5095E28C0DEB30079D047 /* backgroundMusic.m4a */; };
+		59E5096128C0E4D00079D047 /* powerUpSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 59E5096028C0E4D00079D047 /* powerUpSound.wav */; };
+		59E5096328C0E5970079D047 /* enemyCrashSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 59E5096228C0E5970079D047 /* enemyCrashSound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +89,8 @@
 		59E5095A28BF68A20079D047 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		59E5095C28C0DEA50079D047 /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
 		59E5095E28C0DEB30079D047 /* backgroundMusic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundMusic.m4a; sourceTree = "<group>"; };
+		59E5096028C0E4D00079D047 /* powerUpSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerUpSound.wav; sourceTree = "<group>"; };
+		59E5096228C0E5970079D047 /* enemyCrashSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enemyCrashSound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,8 @@
 		59077D9F28B797D700420CF6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				59E5096228C0E5970079D047 /* enemyCrashSound.wav */,
+				59E5096028C0E4D00079D047 /* powerUpSound.wav */,
 				59E5095C28C0DEA50079D047 /* hitSound.wav */,
 				59E5095E28C0DEB30079D047 /* backgroundMusic.m4a */,
 				59D9B093289A712200BE8AE5 /* AppDelegate.swift */,
@@ -284,10 +291,13 @@
 			files = (
 				59077D8328A4F86800420CF6 /* Enemy_2.atlas in Resources */,
 				59D9B09F289A712200BE8AE5 /* Main.storyboard in Resources */,
+				59E5095F28C0E2D60079D047 /* backgroundMusic.m4a in Resources */,
+				59E5096328C0E5970079D047 /* enemyCrashSound.wav in Resources */,
 				59E5095828BF5D2B0079D047 /* Assets.xcassets in Resources */,
 				59077D8528A504A200420CF6 /* Enemy_1.atlas in Resources */,
 				59077D9128AB719800420CF6 /* YellowAmmo.atlas in Resources */,
 				59D9B0A1289A712400BE8AE5 /* Assets.xcassets in Resources */,
+				59E5096128C0E4D00079D047 /* powerUpSound.wav in Resources */,
 				59077D8928A5051900420CF6 /* PlayerPlane.atlas in Resources */,
 				59E5095728BF5D2B0079D047 /* EnemyExplosion.sks in Resources */,
 				59D9B0A4289A712400BE8AE5 /* LaunchScreen.storyboard in Resources */,

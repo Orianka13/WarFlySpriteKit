@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
+    private var backgroundMusic: SKAudioNode!
+    
     private var player: PlayerPlane?
     private let hud = HUD()
     private var score = 0 {
@@ -44,6 +46,12 @@ class GameScene: ParentScene {
     private let screen = UIScreen.main.bounds //определили размер экрана
     
     override func didMove(to view: SKView) {
+        
+        if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") { // проверяем есть ли файл с музыкой в проекте
+            self.backgroundMusic = SKAudioNode(url: musicURL) //создаем аудио нод
+            addChild(backgroundMusic) //вызываем его
+        }
+        
         self.scene?.isPaused = false
         
         //проверим существует ли gameScene
@@ -247,11 +255,13 @@ extension GameScene: SKPhysicsContactDelegate {
             if contact.bodyA.node?.name == "sprite" {
                 if contact.bodyA.node?.parent != nil {
                     contact.bodyA.node?.removeFromParent()
+                    self.run(SKAction.playSoundFileNamed("enemyCrashSound", waitForCompletion: false))
                     self.lives -= 1
                 }
             } else {
                 if contact.bodyB.node?.parent != nil {
                     contact.bodyB.node?.removeFromParent()
+                    self.run(SKAction.playSoundFileNamed("enemyCrashSound", waitForCompletion: false))
                     self.lives -= 1
                 }
             }
@@ -269,21 +279,25 @@ extension GameScene: SKPhysicsContactDelegate {
             if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
                 if contact.bodyA.node?.name == "bluePowerUp" {
                     contact.bodyA.node?.removeFromParent()
+                    self.run(SKAction.playSoundFileNamed("powerUpSound", waitForCompletion: false))
                     self.lives = 3
                     player?.run(player?.livesBlueBoostAnimation() ?? SKAction())
                 } else if contact.bodyB.node?.name == "bluePowerUp" {
                     contact.bodyB.node?.removeFromParent()
+                    self.run(SKAction.playSoundFileNamed("powerUpSound", waitForCompletion: false))
                     self.lives = 3
                     player?.run(player?.livesBlueBoostAnimation() ?? SKAction())
                 }
                 if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
+                    self.run(SKAction.playSoundFileNamed("powerUpSound", waitForCompletion: false))
                     if self.lives < 3 {
                         self.lives += 1
                     }
                     player?.run(player?.livesGreenBoostAnimation() ?? SKAction())
                 } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
+                    self.run(SKAction.playSoundFileNamed("powerUpSound", waitForCompletion: false))
                     if self.lives < 3 {
                         self.lives += 1
                     }
@@ -292,9 +306,10 @@ extension GameScene: SKPhysicsContactDelegate {
             }
         case [.enemy, .shot]:
             print("enemy VS shot")
-            if contact.bodyA.node?.parent != nil || contact.bodyB.node?.parent != nil {
+            if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()
+                self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
                 self.score += 1
                 guard let explosion = explosion else { return }
                 addChild(explosion)

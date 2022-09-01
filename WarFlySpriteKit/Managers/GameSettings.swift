@@ -28,7 +28,10 @@ class GameSettings: NSObject {
     }
     
     func saveScores() {
-        self.highScore.append(currentScore)
+        if !self.highScore.contains(currentScore) {
+            self.highScore.append(currentScore)
+        }
+        
         self.highScore = Array(self.highScore.sorted{ $0 > $1 }.prefix(3))
         
         ud.set(self.highScore, forKey: self.highScoreKey)
